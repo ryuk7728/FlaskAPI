@@ -173,7 +173,7 @@ def get_parameters():
     
     x_test = np.loadtxt('x_test.txt')
 
-    random_number = random.randint(1, 100000)
+    random_number = random.randint(1, 1000)
 
     x_testeg = x_test[random_number].reshape(1,14)
     print(np.round(x_testeg,2))
