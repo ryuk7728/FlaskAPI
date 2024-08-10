@@ -1,1 +1,1 @@
-web: python dataGen.py
+web: python app.py
