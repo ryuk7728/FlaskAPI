@@ -200,9 +200,9 @@ def get_parameters():
                 flag = False
 
                 # Email credentials
-                sender_email = "ryuk7728@gmail.com"
+                sender_email = "caterpillaralert@gmail.com"
                 receiver_email = str(email)
-                password = "venk wgxx fkmy uwje"
+                password = "chob hvzx hwdh zcul"
 
                 # Create the email
                 subject = "Machine Failure"
@@ -245,9 +245,9 @@ def get_parameters():
                 flag = False
 
                 # Email credentials
-                sender_email = "ryuk7728@gmail.com"
+                sender_email = "caterpillaralert@gmail.com"
                 receiver_email = str(email)
-                password = "venk wgxx fkmy uwje"
+                password = "chob hvzx hwdh zcul"
 
                 # Create the email
                 subject = "Machine Failure"
@@ -289,9 +289,9 @@ def get_parameters():
                 flag = False
 
                 # Email credentials
-                sender_email = "ryuk7728@gmail.com"
+                sender_email = "caterpillaralert@gmail.com"
                 receiver_email = str(email)
-                password = "venk wgxx fkmy uwje"
+                password = "chob hvzx hwdh zcul"
 
                 # Create the email
                 subject = "Machine Failure"
@@ -332,9 +332,9 @@ def get_parameters():
 
     if flag:
 
-                sender_email = "ryuk7728@gmail.com"
+                sender_email = "caterpillaralert@gmail.com"
                 receiver_email = str(email)
-                password = "venk wgxx fkmy uwje"
+                password = "chob hvzx hwdh zcul"
 
                 # Create the email
                 subject = "Suspicious use detected"
