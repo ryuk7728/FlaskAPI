@@ -12,6 +12,9 @@ app = Flask(__name__)
 def get_parameters():
     k = 3
     api_input = request.args.get('type')
+    email = request.args.get('email')
+    machineName = str(request.args.get('machineName'))
+    machineID = str(request.args.get('machineID'))
     
     model = load_model('trained_model.keras')
     scaling_factors = np.array([65, 1800, 105, 10, 450, 4.7, 1800, 17, 65, 400, 15, 365, 125, 40])
@@ -191,12 +194,11 @@ def get_parameters():
 
     for i in range(len(ylist)):
             if(ylist[i]>0.7):
-                machineName = "machineName"
-                machineID = "machineID"
+                
 
                 # Email credentials
                 sender_email = "ryuk7728@gmail.com"
-                receiver_email = "haeker969@gmail.com"
+                receiver_email = str(email)
                 password = "venk wgxx fkmy uwje"
 
                 # Create the email
@@ -225,12 +227,11 @@ def get_parameters():
                 finally:
                     server.quit()  # Close the connection to the SMTP server
             if(ylist[i]>0.4 and ylist[i]<0.7):
-                machineName = "machineName"
-                machineID = "machineID"
+            
 
                 # Email credentials
                 sender_email = "ryuk7728@gmail.com"
-                receiver_email = "haeker969@gmail.com"
+                receiver_email = str(email)
                 password = "venk wgxx fkmy uwje"
 
                 # Create the email
@@ -259,12 +260,11 @@ def get_parameters():
                 finally:
                     server.quit()  # Close the connection to the SMTP server
             if(ylist[i]>0.1 and ylist[i]<0.3):
-                machineName = "machineName"
-                machineID = "machineID"
+                
 
                 # Email credentials
                 sender_email = "ryuk7728@gmail.com"
-                receiver_email = "haeker969@gmail.com"
+                receiver_email = str(email)
                 password = "venk wgxx fkmy uwje"
 
                 # Create the email
@@ -308,4 +308,4 @@ def get_parameters():
 
 
 if __name__ == '__main__':
-    app.run(host = "0.0.0.0",port=5000,debug=True)
+    app.run(host="0.0.0.0",port=5000,debug=True)
