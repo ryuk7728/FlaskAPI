@@ -190,11 +190,14 @@ def get_parameters():
     ylist = y_pred.tolist()[0]
 
     xlist = [round(val, 2) for val in xlist]
+    flag = True
+
 
 
     for i in range(len(ylist)):
+            
             if(ylist[i]>0.7):
-                
+                flag = False
 
                 # Email credentials
                 sender_email = "ryuk7728@gmail.com"
@@ -203,7 +206,18 @@ def get_parameters():
 
                 # Create the email
                 subject = "Machine Failure"
-                body =  machineName + " with ID " + machineID + " is malfunctioning with high probability of failure. The " + parameter_names[i] + " value is " + str(xlist[i]) + " which is beyond the ideal range from " +  str(parameters[i]["low"]) + " to " + str(parameters[i]["high"]) +". Please take immediate action."
+                body = (
+                    f"Dear Customer,\n\n"
+                    f"We have detected a critical issue with Machine Name: {machineName} (ID: {machineID}). "
+                    f"The machine is currently malfunctioning, and there is a high probability of failure.\n\n"
+                    f"Specifically, the value for {parameter_names[i]} is {xlist[i]}, which is outside the ideal range of {parameters[i]['low']} to {parameters[i]['high']}.\n"
+                    f"Please take immediate action to address this issue to prevent potential failure.\n\n"
+                    f"Thank you for your prompt attention to this matter.\n\n"
+                    f"Best regards,\n\n"
+                    f"Codebreakers\n\n"
+                    f"Caterpillar\n"
+                
+                )
 
                 msg = MIMEMultipart()
                 msg['From'] = sender_email
@@ -227,7 +241,8 @@ def get_parameters():
                 finally:
                     server.quit()  # Close the connection to the SMTP server
             if(ylist[i]>0.4 and ylist[i]<0.7):
-            
+
+                flag = False
 
                 # Email credentials
                 sender_email = "ryuk7728@gmail.com"
@@ -236,7 +251,18 @@ def get_parameters():
 
                 # Create the email
                 subject = "Machine Failure"
-                body =  machineName + " with ID " + machineID + " is malfunctioning with moderate probability of failure. The " + parameter_names[i] + " value is " + str(xlist[i]) + " which is not in the ideal range from " +  str(parameters[i]["low"]) + " to " + str(parameters[i]["high"]) +". Please take immediate action."
+                body = (
+                    f"Dear Customer,\n\n"
+                    f"We have detected a critical issue with Machine Name: {machineName} (ID: {machineID}). "
+                    f"The machine is currently malfunctioning, and there is a moderate probability of failure.\n\n"
+                    f"Specifically, the value for {parameter_names[i]} is {xlist[i]}, which is outside the ideal range of {parameters[i]['low']} to {parameters[i]['high']}.\n"
+                    f"Please take immediate action to address this issue to prevent potential failure.\n\n"
+                    f"Thank you for your prompt attention to this matter.\n\n"
+                    f"Best regards,\n\n"
+                    f"Codebreakers\n\n"
+                    f"Caterpillar\n"
+                
+                )
 
                 msg = MIMEMultipart()
                 msg['From'] = sender_email
@@ -260,7 +286,7 @@ def get_parameters():
                 finally:
                     server.quit()  # Close the connection to the SMTP server
             if(ylist[i]>0.1 and ylist[i]<0.3):
-                
+                flag = False
 
                 # Email credentials
                 sender_email = "ryuk7728@gmail.com"
@@ -269,7 +295,18 @@ def get_parameters():
 
                 # Create the email
                 subject = "Machine Failure"
-                body =  machineName + " with ID " + machineID + " is malfunctioning with low probability of failure. The " + parameter_names[i] + " value is " + str(xlist[i]) + " which is not in the ideal range from " +  str(parameters[i]["low"]) + " to " + str(parameters[i]["high"]) +". Please take immediate action."
+                body = (
+                    f"Dear Customer,\n\n"
+                    f"We have detected a critical issue with Machine Name: {machineName} (ID: {machineID}). "
+                    f"The machine is currently malfunctioning, and there is a low probability of failure.\n\n"
+                    f"Specifically, the value for {parameter_names[i]} is {xlist[i]}, which is outside the ideal range of {parameters[i]['low']} to {parameters[i]['high']}.\n"
+                    f"Please take immediate action to address this issue to prevent potential failure.\n\n"
+                    f"Thank you for your prompt attention to this matter.\n\n"
+                    f"Best regards,\n\n"
+                    f"Codebreakers\n\n"
+                    f"Caterpillar\n"
+                
+                )
 
                 msg = MIMEMultipart()
                 msg['From'] = sender_email
@@ -293,7 +330,46 @@ def get_parameters():
                 finally:
                     server.quit()  # Close the connection to the SMTP server
 
-    
+    if flag:
+
+                sender_email = "ryuk7728@gmail.com"
+                receiver_email = str(email)
+                password = "venk wgxx fkmy uwje"
+
+                # Create the email
+                subject = "Suspicious use detected"
+                body = (
+                        f"Dear Customer,\n\n"
+                        f"{machineName} with ID {machineID} has been flagged for suspicious use outside of working hours. "
+                        f"Please take immediate action to address this issue.\n\n"
+                        f"Thank you for your prompt attention.\n\n"
+                        f"Best regards,\n\n"
+                        f"Codebreakers\n\n"
+                        f"Caterpillar\n"
+                        )
+
+                msg = MIMEMultipart()
+                msg['From'] = sender_email
+                msg['To'] = receiver_email
+                msg['Subject'] = subject
+
+                msg.attach(MIMEText(body, 'plain'))
+
+                # Send the email
+                try:
+                    # Create a secure connection with the Gmail server
+                    server = smtplib.SMTP('smtp.gmail.com', 587)
+                    server.starttls()  # Upgrade the connection to a secure encrypted SSL/TLS connection
+                    server.login(sender_email, password)
+                    
+                    text = msg.as_string()
+                    server.sendmail(sender_email, receiver_email, text)
+                    print("Email sent successfully!")
+                except Exception as e:
+                    print(f"Failed to send email: {e}")
+                finally:
+                    server.quit()  # Close the connection to the SMTP server
+
 
     if api_input == "data":
         return jsonify({
